@@ -1,0 +1,27 @@
+<p>albums works!</p>
+<div>
+    <h1>{{ titlePage }}</h1>
+    <div class="container-fuild principal" *ngIf="albums">
+        <div class="col-sm-8 music" *ngFor="let mut of albums">
+
+            <div class="card">
+                <div class="card-header">
+                    Pop
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title"> {{ mut.title }} </h5>
+                    <p class="card-text"> {{ mut.description }} </p>
+                    <!-- <ul class="list-group list-group-horizontal mb-3 col-sm-3 fw-bold">
+                        <li class="list-group-item list-group-item-action list-group-item-info mx-1 rounded"  *ngFor="let tag of album.tags">{{tag}}</li>
+                    </ul> -->
+                    <a class="btn btn-outline-dark" href="#" role="button">en</a>
+
+                    <img class="glyph-icon " width="15px" height="auto" src="./assets/svg/si-glyph-heart.svg" />
+                    <small>3</small>
+                    <img class="glyph-icon" width="15px" height="auto" src="./assets/svg/si-glyph-timer.svg" />
+                    <small> {{mut.duration}} min</small>
+                </div>
+            </div><!-- .card -->
+        </div><!-- .music -->
+    </div>
+</div>
