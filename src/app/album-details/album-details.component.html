@@ -1,11 +1,11 @@
 <!-- <p>album-details works!</p> -->
-<div class="container-fuild principal" *ngIf="albums">
-    <div class="col-sm-4 video" *ngFor="let mut of albums">
+<div class="container-fuild principal">
+    <div class="col-sm-4 video" >
         <div class="card">
             <img class="card-img-top" src="./assets/images/default_image.png" alt="Group Music">
             <div class="card-body">
-                <h5 class="card-title">{{ mut.title }}</h5>
-                <p class="card-text">{{ mut.name }}</p>
+                <h5 class="card-title">{{album | json}}</h5>
+                <p class="card-text"></p>
                 <a href="#" class="btn btn-primary">Play >> </a>
             </div>
             <ul class="list-group">
