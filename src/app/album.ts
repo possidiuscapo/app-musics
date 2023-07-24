@@ -14,7 +14,7 @@ export class Album {
 }
 
 export class List {
-    constructor() {
-        
-    }
+    "id" : string;
+    "list": string[];
+  static id: string;
 }

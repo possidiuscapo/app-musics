@@ -13,14 +13,15 @@ import { ALBUMS } from '../mock-albums';
 export class AlbumsComponent implements OnInit {
   titlePage: string = "Page principale Albums Music";
   albums: Album[] = ALBUMS;
-  selectedAlbum!:  Album; 
+  selectedAlbum!:  Album;
+
 
   constructor( ) { }
   ngOnInit() {
   }
-  onSelect(mut: Album) : void{
-    this.selectedAlbum = mut;
-    // console.log("un tableau albums")
+  onSelect(album: Album) : void{
+    this.selectedAlbum = album;
+
   }
   
 }
