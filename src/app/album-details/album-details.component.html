@@ -1,20 +1,15 @@
-<!-- <p>album-details works!</p> -->
-<div class="container-fuild principal">
-    <div class="col-sm-4 video" >
-        <div class="card">
-            <img class="card-img-top" src="./assets/images/default_image.png" alt="Group Music">
-            <div class="card-body">
-                <h5 class="card-title">{{album | json}}</h5>
-                <p class="card-text"></p>
-                <a href="#" class="btn btn-primary">Play >> </a>
-            </div>
-            <ul class="list-group">
-                <li class="list-group-item active">Cras justo odio</li>
-                <li class="list-group-item">Dapibus ac facilisis in</li>
-                <li class="list-group-item">Morbi leo risus</li>
-                <li class="list-group-item">Porta ac consectetur ac</li>
-                <li class="list-group-item">Vestibulum at eros</li>
-            </ul>
+<div class="col-sm-4 video" style="width: 100%;" *ngIf="album">
+    <div class="card border border-1">
+        <img class="card-img-top" src="../assets/images/party.jpg" alt="Group Music">
+        <div class="card-body" style="width: 100%;">
+            <h5 class="card-title" style="text-transform: capitalize;">{{album.title}}</h5>
+            <p class="card-text">{{album.name}}</p>
+            <a href="#" class="btn" style="background-color: rgb(250, 116, 67);color: rgb(249, 232, 224); font-size: 1.2rem; font-weight: 600;">Play
+            </a>
         </div>
-    </div><!-- .video -->
+        <ul class="list-group" >
+            <li class="list-group-item bg-body-tertiary" *ngFor=" let tab of tabDeList" style="text-transform: capitalize;"> {{ tab }} </li>
+        </ul>
+    </div>
+
 </div>
