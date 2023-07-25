@@ -1,18 +1,19 @@
 <div class="row content" *ngIf="albums">
     <div class="col-sm-4 video">
         <div class="card border border-0 shadow mb-2">
-            <app-album-details [album]="selectedAlbum"></app-album-details>
+            <app-album-details [album]="selectedAlbum" (onPlay)="playParent($event)"></app-album-details>
         </div>
     </div><!-- .video -->
     <div class="col-sm-8 music">
         <div class="d-flex align-content-baseline">
-            <h1 class="mb-4" style=" color: white;">{{ titlePage }}</h1>
+            <h1 class="mb-4" style="color: white;">{{ titlePage }}</h1>
             <span>Total {{albums.length}}</span>
         </div>
         <div class="card mb-3 shadow-sm mb-5 " *ngFor="let album of albums" style="background-color: rgb(80, 79, 79);">
             <div class="card-header shadow-sm p-3 mb-5"
                 style="background-color: rgb(115, 115, 115); color: white; font-weight: 600; font-size: 1.5rem;">
                 {{ album.ref }}
+                <span *ngIf="status === album.id">[play]</span>
             </div>
             <div class="card-body " >
                 <h5 class="card-title" style="text-transform: capitalize; color: white;"> {{ album.title }} </h5>
@@ -23,7 +24,7 @@
                             *ngFor="let tag of album.tags" style="text-transform: capitalize; color: white; background-color: rgb(46, 46, 46);">{{tag}}</li>
                     </ul>
                 </div>
-                <a class="btn btn-outline-dark me-1" href="#" role="button"
+                <a class="btn btn-outline-light me-1" href="#" role="button"
                     style="text-transform: capitalize; font-weight: 600;">en</a>
                 <img class="glyph-icon me-1" width="20px" height="auto" src="./assets/svg/si-glyph-heart.svg" />
                 <small class="me-2" style="font-size: 20px; color: white;">Mush</small>

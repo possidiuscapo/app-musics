@@ -1,16 +1,17 @@
-<div class="col-sm-4 video" style="width: 100%;" *ngIf="album">
-    <div class="card border border-1 sticky-top">
-        <!-- <img class="card-img-top" src="{{album.url}}" alt="Group Music"> -->
-        <img class="card-img-top" src="../assets/images/party.jpg" alt="Group Music">
-        <div class="card-body" style="width: 100%;">
-            <h5 class="card-title" style="text-transform: capitalize; font-weight: 700; font-size: 1.3rem;">{{album.title}}</h5>
-            <p class="card-text" style="text-transform: capitalize; font-weight: 500; font-size: 1.1rem;">{{album.name}}</p>
-            <a href="#" class="btn" style="background-color: rgb(250, 116, 67);color: rgb(249, 232, 224); font-size: 1.2rem; font-weight: 600;">Play  
-                <span class="fas fa-play ms-2"></span>
-            </a>
-        </div>
-        <ul class="list-group" >
-            <li class="list-group-item" *ngFor=" let tab of tabDeList" style="text-transform: capitalize; background-color: rgb(154, 154, 154); color: white; font-weight: 600; font-size: 1.1rem;"> {{ tab }} </li>
-        </ul>
+<div class="card border border-1 sticky-top b" *ngIf="album" style="background-color: rgb(74, 74, 74);">
+    <img class="card-img-top" src="{{album.url}}" alt="Group Music">
+    <!-- <img class="card-img-top" src="../assets/images/party.jpg" alt="Group Music"> -->
+    <div class="card-body" style="width: 100%;">
+        <h5 class="card-title" style="text-transform: capitalize; font-weight: 700; font-size: 1.3rem; color: white;">{{album.title}}
+        </h5>
+        <p class="card-text" style="text-transform: capitalize; font-weight: 500; font-size: 1.1rem; color: white;">{{album.name}}</p>
+        <button (click)="play(album)" class="btn"
+            style="background-color: rgba(250, 67, 1, 0.495);color: rgb(249, 232, 224); font-size: 1.2rem; font-weight: 600;">Play
+            <span class="fas fa-play ms-2"></span>
+        </button>
     </div>
+    <ul class="list-group">
+        <li class="list-group-item" *ngFor=" let tab of tabDeList"
+            style="text-transform: capitalize; background-color: rgb(94, 93, 93); color: white; font-weight: 600; font-size: 1.1rem;">{{ tab }}</li>
+    </ul>
 </div>

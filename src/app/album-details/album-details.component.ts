@@ -3,7 +3,8 @@
 
 import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 import { Album, List } from '../album';
-import { ALBUM_LISTS } from "../mock-albums";
+import { AlbumService } from '../album.service';
+// import { ALBUM_LISTS } from "../mock-albums";
 
 @Component({
   selector: 'app-album-details',
@@ -13,31 +14,37 @@ import { ALBUM_LISTS } from "../mock-albums";
 export class AlbumDetailsComponent implements OnInit, OnChanges {
   // Classe Input permet de récupérer les data de l'enfant
   // album est liée à une entrée [album] du parent dans le sélecteur
-  @Input() album!: Album;
-  @Output() onPlay : EventEmitter <Album> = new EventEmitter();
+  @Input() album!: Album | undefined;
+  @Output() onPlay: EventEmitter<Album> = new EventEmitter();
   tabDeList!: string[] | undefined;
-  albumLists: List[] = ALBUM_LISTS;
-  constructor() { }
+  albumLists: List[] = [];
+
+
+  constructor(
+    private albumService : AlbumService
+  ) { }
 
   ngOnInit() {
-    console.log(this.album); // pour l'instant c'est undefined ... C'est normal
+    console.log(this.album);
+    // this.albumLists = this.al
+    // pour l'instant c'est undefined ... C'est normal
   }
 
   ngOnChanges() {
-    // if(this.album !== undefined){
-    //   ALBUM_LISTS.forEach((albumList) => {
-    //     if ( albumList.id === this.album.id) {
-    //       this.tabDeList = albumList.list;
-    //     }
-    //   });
-    // }
+    /* if(this.album !== undefined){
+     ALBUM_LISTS.forEach((albumList) => {
+       if ( albumList.id === this.album.id) {
+         this.tabDeList = albumList.list;
+       }
+     });
+   }*/
 
-    if(this.album !== undefined){
-      this.tabDeList = this.albumLists.find((elem) => elem.id === this.album.id)?.list;
+    if (this.album) {
+      this.tabDeList = this.albumService.getAlbumList(this.album.id)?.list;
     }
   }
-  play(album:Album){
+  play(album: Album) {
     this.onPlay.emit(album)
-    console.log("Appel de la methode Play")
+    console.log("Joueur l'album " + album.name)
   }
 }

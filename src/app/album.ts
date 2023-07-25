@@ -1,4 +1,4 @@
-export class Album {
+export interface Album {
         "id": string;
         "ref": string;
         "name": string;
@@ -13,8 +13,8 @@ export class Album {
 
 }
 
-export class List {
+export interface List {
     "id" : string;
     "list": string[];
-  static id: string;
+  // static id: string;
 }
