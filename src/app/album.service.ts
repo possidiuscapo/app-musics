@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Album, List, SortAlbumCallback } from './album';
 import { ALBUMS, ALBUM_LISTS } from './mock-albums';
-import { SearchComponent } from "./search/search.component";
+// import { SearchComponent } from "./search/search.component";
 
 @Injectable({
   providedIn: 'root'
@@ -50,7 +50,7 @@ export class AlbumService {
   //   .slice(start,end)
   //   .sort((a:Album, b: Album) =>b.duration - a.duration)
   // }
-
+// Recherche des albums et  afficher
   search(word: string): Album[] {
     return this._albums
       .filter(album => {
@@ -59,8 +59,12 @@ export class AlbumService {
           .includes(word.trim().toLowerCase());
       })
   }
-  serchV2(word: string): Album[]{
-     let re = new RegExp(word.trim(),"g");
-    return this._albums.filter(album => album.title.match(re))
-  }
+  // serchV2(word: string): Album[]{
+  //    let re = new RegExp(word.trim(),"g");
+  //   return this._albums.filter(album => album.title.match(re))
+  // }
+
+  // searchAlbum(word:string) : Album[]{
+  //   return this._albums.filter(album => album)
+  // }
 }

@@ -25,9 +25,7 @@ export class AlbumDetailsComponent implements OnInit, OnChanges {
   ) { }
 
   ngOnInit() {
-    console.log(this.album);
-    // this.albumLists = this.al
-    // pour l'instant c'est undefined ... C'est normal
+    
   }
 
   ngOnChanges() {
@@ -43,6 +41,7 @@ export class AlbumDetailsComponent implements OnInit, OnChanges {
       this.tabDeList = this.albumService.getAlbumList(this.album.id)?.list;
     }
   }
+  
   play(album: Album) {
     this.onPlay.emit(album)
     console.log("Joueur l'album " + album.name)

@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
 // Importez la définition de la classe et les albums
 import { Album } from '../album';
 import { AlbumService } from '../album.service';
-import { ALBUMS } from '../mock-albums';
+// import { ALBUMS } from '../mock-albums';
 
 @Component({
   selector: 'app-albums',
@@ -24,8 +24,8 @@ export class AlbumsComponent implements OnInit {
   ngOnInit() {
     this.albums = this.albumService
                                                  .order((a:Album, b: Album) => a.duration - b.duration)
-                                                 .limite(0, 2)
-                                                //  .limite(0, this.albumService.count())
+                                                //  .limite(0, 10)
+                                                 .limite(0, this.albumService.count())
                                                  .getAlbums()
   }
   onSelect(album: Album) : void{
@@ -37,8 +37,11 @@ export class AlbumsComponent implements OnInit {
     this.status = $event.id;
   }
 
-  search(){
+  search($event: Album[]){
     console.log(`Parent sera mis à jour  et affichera seulement les albums ${$event}`)
+    if ($event){
+      this.albums = $event
+    }
   }
 }
 
