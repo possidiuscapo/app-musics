@@ -17,7 +17,7 @@
                 <span *ngIf="status === album.id">[play]</span>
             </div>
             <div class="card-body " >
-                <h5 class="card-title" style="text-transform: capitalize; color: white;"> {{ album.title }} </h5>
+                <h5 class="card-title" style="text-transform: capitalize; color: white;"> <a class="text-info" routerLink="/album/{{album.id}}">{{album.title}}</a> </h5>
                 <p class="card-text" style="text-transform: initial; color: white;"> {{ album.description }} </p>
                 <div class="row content">
                     <ul class="list-group list-group-horizontal mb-3 col-sm-3 fw-bold">

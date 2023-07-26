@@ -1,7 +1,12 @@
 <!-- <p style="color: white;">search works!</p> -->
-<nav class="navbar navbar-expand-lg shadow p-3 mb-5 rounded " style="font-weight: 600; font-size: 1.2rem; background-color: rgb(15, 20, 17);">
-    <form class="form-inline my-2 my-lg-0 d-flex" (ngSubmit)="onSubmit(formSearch)" #formSearch="ngForm">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="word" [(ngModel)]= "word" (ngModelChange)="onChangeEmit($event)" required>
-        <a href="#"><button class="btn btn-outline-success" type="submit">Search</button></a>
-    </form>
+<nav class="navbar navbar-expand-lg shadow p-3 mb-5 rounded "
+    style="font-weight: 600; font-size: 1.2rem; background-color: rgb(15, 20, 17);">
+    <div class="container-fluid">
+        <a class="navbar-brand"></a>
+        <form class="form-inline my-2 my-lg-0 d-flex" (ngSubmit)="onSubmit(formSearch)" #formSearch="ngForm">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="word"
+                [(ngModel)]="word" (ngModelChange)="onChangeEmit($event)" required>
+            <a href="#"><button class="btn btn-outline-success" type="submit">Search</button></a>
+        </form>
+    </div>
 </nav>
