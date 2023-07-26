@@ -18,3 +18,7 @@ export interface List {
     "list": string[];
   // static id: string;
 }
+
+export interface SortAlbumCallback{
+  (a:Album, b: Album):number
+}

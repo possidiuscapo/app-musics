@@ -1,9 +1,10 @@
+<app-search></app-search>
 <div class="row content" *ngIf="albums">
-    <div class="col-sm-4 video">
-        <div class="card border border-0 shadow mb-2">
-            <app-album-details [album]="selectedAlbum" (onPlay)="playParent($event)"></app-album-details>
-        </div>
-    </div><!-- .video -->
+        <div class="col-sm-4 video ">
+            <div class="card border border-0 shadow mb-2 relative">
+                <app-album-details [album]="selectedAlbum" (onPlay)="playParent($event)"></app-album-details>
+            </div>
+        </div><!-- .video -->
     <div class="col-sm-8 music">
         <div class="d-flex align-content-baseline">
             <h1 class="mb-4" style="color: white;">{{ titlePage }}</h1>

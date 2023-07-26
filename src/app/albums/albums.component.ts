@@ -22,7 +22,11 @@ export class AlbumsComponent implements OnInit {
     private albumService: AlbumService
    ) { }
   ngOnInit() {
-    this.albums = this.albumService.getAlbums()
+    this.albums = this.albumService
+                                                 .order((a:Album, b: Album) => a.duration - b.duration)
+                                                 .limite(0, 2)
+                                                //  .limite(0, this.albumService.count())
+                                                 .getAlbums()
   }
   onSelect(album: Album) : void{
     this.selectedAlbum = album;
@@ -31,6 +35,10 @@ export class AlbumsComponent implements OnInit {
   playParent($event : any){
     // console.log(typeof $event)
     this.status = $event.id;
+  }
+
+  search(){
+    console.log(`Parent sera mis à jour  et affichera seulement les albums ${$event}`)
   }
 }
 
