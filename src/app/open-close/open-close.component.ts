@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { trigger, state, style, animate, transition, } from "@angular/animations";
+import { fadeInAnimation } from '../animation.module';
 
 
 @Component({
@@ -9,19 +10,20 @@ import { trigger, state, style, animate, transition, } from "@angular/animations
   animations:[
     trigger('openClose', [
       state("open",style({
-        border: '2px solid green'
+        border: '5px solid green'
       })),
       state("close",style({
-        border: '2px solid red'
+        border: '5px solid red'
       })),
       transition('open => close', animate('1s')),
       transition('close => open', animate('1s')),
-    ])
+    ]),fadeInAnimation
   ]
 })
 export class OpenCloseComponent {
   isOpen : boolean = true;
    toggle(){
-    this.isOpen = true;
+    this.isOpen = !this.isOpen;
    }
 }
+

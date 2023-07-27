@@ -1,5 +1,5 @@
 <app-search (searchAlbums)="search($event)"></app-search>
-<div class="row content" *ngIf="albums">
+<div class="row content" *ngIf="albums" [@fadeInAnimation]>
     <div class="col-sm-4 video ">
         <div class="card border border-0 shadow mb-2 relative">
             <app-album-details [album]="selectedAlbum" (onPlay)="playParent($event)"></app-album-details>

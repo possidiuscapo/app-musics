@@ -40,8 +40,6 @@ const albumsRoutes: Routes = [
     component: OpenCloseComponent
   },
 
-
-  //PAGE NOT FOUND  "404"
   {
     path: '***',
     component: PageNotFoundComponent
@@ -56,15 +54,15 @@ const albumsRoutes: Routes = [
     SearchComponent,
     LoginComponent,
     AlbumDescriptionComponent,
-    PageNotFoundComponent,
     OpenCloseComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
     // NgModule,
     FormsModule,
-    RouterModule.forRoot(albumsRoutes),
     BrowserAnimationsModule,
+    RouterModule.forRoot(albumsRoutes),
   ],
   providers: [],
   bootstrap: [AppComponent]
