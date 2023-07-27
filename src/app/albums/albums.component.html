@@ -1,28 +1,31 @@
 <app-search (searchAlbums)="search($event)"></app-search>
 <div class="row content" *ngIf="albums">
-        <div class="col-sm-4 video ">
-            <div class="card border border-0 shadow mb-2 relative">
-                <app-album-details [album]="selectedAlbum" (onPlay)="playParent($event)"></app-album-details>
-            </div>
-        </div><!-- .video -->
+    <div class="col-sm-4 video ">
+        <div class="card border border-0 shadow mb-2 relative">
+            <app-album-details [album]="selectedAlbum" (onPlay)="playParent($event)"></app-album-details>
+        </div>
+    </div><!-- .video -->
     <div class="col-sm-8 music">
         <div class="d-flex align-content-baseline">
             <h1 class="mb-4" style="color: white;">{{ titlePage }}</h1>
-            <span>Total {{albums.length}}</span>
+            <!-- <span>Total {{albums.length}}</span> -->
         </div>
-        <div class="card mb-3 shadow-sm mb-5 " *ngFor="let album of albums" style="background-color: rgb(80, 79, 79);">
-            <div class="card-header shadow-sm p-3 mb-5"
+        <div class="card mb-3 shadow-sm mb-5 " *ngFor="let album of albums" style="background-color: #909090cb;">
+            <div class="card-header shadow-sm p-2"
                 style="background-color: rgb(115, 115, 115); color: white; font-weight: 600; font-size: 1.5rem;">
                 {{ album.ref }}
                 <span *ngIf="status === album.id">[play]</span>
             </div>
-            <div class="card-body " >
-                <h5 class="card-title" style="text-transform: capitalize; color: white;"> <a class="text-info" routerLink="/album/{{album.id}}">{{album.title}}</a> </h5>
+            <div class="card-body ">
+                <h5 class="card-title" style="text-transform: capitalize; color: white;"> <a class="text-info"
+                        routerLink="/album/{{album.id}}">{{album.title}}</a> </h5>
                 <p class="card-text" style="text-transform: initial; color: white;"> {{ album.description }} </p>
                 <div class="row content">
                     <ul class="list-group list-group-horizontal mb-3 col-sm-3 fw-bold">
-                        <li class="list-group-item list-group-item-action list-group-item-dark mx-1 rounded"
-                            *ngFor="let tag of album.tags" style="text-transform: capitalize; color: white; background-color: rgb(46, 46, 46);">{{tag}}</li>
+                        <li class="list-group-item list-group-item-action list-group-item-dark mx-1 rounded shadow border border-0"
+                            *ngFor="let tag of album.tags"
+                            style="text-transform: capitalize; color: white; background-color: rgb(99, 99, 99);">{{tag}}
+                        </li>
                     </ul>
                 </div>
                 <a class="btn btn-outline-light me-1" href="#" role="button"
@@ -31,8 +34,7 @@
                 <small class="me-2" style="font-size: 20px; color: white;">Mush</small>
                 <img class="glyph-icon me-1" width="20px" height="auto" src="./assets/svg/si-glyph-timer.svg" />
                 <small style="font-size: 20px; color: white;"> {{album.duration}} min</small><br>
-                <a href="#"><button type="button" class="btn mt-2" (click)="onSelect(album)"
-                        style="background-color: rgb(121, 121, 121); color: white; font-size: 1.3rem;">More</button></a>
+                <a routerLink="/albums"><button type="button" class="btn mt-2" (click)="onSelect(album)" style="background-color: rgb(121, 121, 121); color: white; font-size: 1.3rem">More</button></a>
             </div>
         </div><!-- .card -->
     </div><!-- .music -->

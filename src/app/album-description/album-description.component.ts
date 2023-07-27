@@ -6,7 +6,7 @@ import { AlbumService } from '../album.service';
 @Component({
   selector: 'app-album-description',
   templateUrl: './album-description.component.html',
-  styleUrls: ['./album-description.component.scss']
+  styleUrls: ['./album-description.component.css']
 })
 
 export class AlbumDescriptionComponent implements OnInit {
@@ -17,7 +17,10 @@ export class AlbumDescriptionComponent implements OnInit {
   ) { }
   ngOnInit() {
     // permet de récupérer l'identifiant
-    const id = this.route.snapshot.paramMap.get('id');
+    const id = this.route.snapshot.params['id'];
+
+    this.album = this.aS.getAlbum(id)
+    console.log(this.album)
     // TODO récupérez le détail d'un album
   }
 }

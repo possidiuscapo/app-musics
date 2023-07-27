@@ -1,27 +1,27 @@
 <div class="container-fuild principal ">
-    <nav class="navbar navbar-expand-lg shadow p-3 mb-5 rounded" style="font-weight: 600; font-size: 1.2rem; background-color: rgb(56, 55, 55);">
+    <nav class="navbar navbar-expand-lg shadow p-3 mb-5 rounded" style="font-weight: 600; font-size: 1.2rem; background-color: rgb(194, 194, 194);">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#" style="text-transform: capitalize; font-size: 1.4rem; font-weight: 700; color: white;">{{title}}</a>
+          <a class="navbar-brand" href="#" style="text-transform: capitalize; font-size: 1.4rem; font-weight: 700; color: rgb(20, 20, 20);">{{title}}</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#" style="color: white;">Home
+                <a class="nav-link active" aria-current="page" routerLink="/albums" style="color: rgb(54, 33, 33);">Home
                     <!-- <span class="sr-only">(current)</span> -->
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" routerLink="/login" routerLinkActive="acitve" style="color: white;">Se connecter
+                <a class="nav-link" routerLink="/login" routerLinkActive="acitve" style="color: rgb(71, 71, 71);">Se connecter
                     <!-- <span class="sr-only">(current)</span> -->
                 </a>
               </li>
             </ul>
-            
           </div>
         </div>
   </nav>
+  <!-- C'est la parti ou sera rendu tous les enfants de ce componant -->
   <router-outlet></router-outlet>
   <!-- <app-albums></app-albums> -->
 </div>
