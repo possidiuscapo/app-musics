@@ -7,7 +7,7 @@ import { fadeInAnimation } from '../animation.module';
   selector: 'app-open-close',
   templateUrl: './open-close.component.html',
   styleUrls: ['./open-close.component.css'],
-  animations:[
+  animations:[fadeInAnimation,
     trigger('openClose', [
       state("open",style({
         border: '5px solid green'
@@ -17,7 +17,7 @@ import { fadeInAnimation } from '../animation.module';
       })),
       transition('open => close', animate('1s')),
       transition('close => open', animate('1s')),
-    ]),fadeInAnimation
+    ]), 
   ]
 })
 export class OpenCloseComponent {
