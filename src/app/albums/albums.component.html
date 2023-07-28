@@ -7,24 +7,23 @@
     </div><!-- .video -->
     <div class="col-sm-8 music">
         <div class="d-flex align-content-baseline">
-            <h1 class="mb-4" style="color: white;">{{ titlePage }}</h1>
+            <h1 class="mb-4" >{{ titlePage }}</h1>
             <!-- <span>Total {{albums.length}}</span> -->
         </div>
         <div class="card mb-3 shadow-sm mb-5 " *ngFor="let album of albums" style="background-color: #909090cb;">
             <div class="card-header shadow-sm p-2"
                 style="background-color: rgb(115, 115, 115); color: white; font-weight: 600; font-size: 1.5rem;">
                 {{ album.ref }}
-                <span *ngIf="status === album.id">[play]</span>
+                <span *ngIf="status === album.id" class="fas fa-pause"></span>
             </div>
             <div class="card-body ">
-                <h5 class="card-title" style="text-transform: capitalize; color: white;"> <a class="text-info"
+                <h5 class="card-title" style="text-transform: capitalize; color: white;"><a class="text-info"
                         routerLink="/album/{{album.id}}">{{album.title}}</a> </h5>
                 <p class="card-text" style="text-transform: initial; color: white;"> {{ album.description }} </p>
                 <div class="row content">
                     <ul class="list-group list-group-horizontal mb-3 col-sm-3 fw-bold">
                         <li class="list-group-item list-group-item-action list-group-item-dark mx-1 rounded shadow border border-0"
-                            *ngFor="let tag of album.tags"
-                            style="text-transform: capitalize; color: white; background-color: rgb(99, 99, 99);">{{tag}}
+                            *ngFor="let tag of album.tags" style="text-transform: capitalize; color: white; background-color: rgb(99, 99, 99);">{{tag}}
                         </li>
                     </ul>
                 </div>
@@ -38,5 +37,4 @@
             </div>
         </div><!-- .card -->
     </div><!-- .music -->
-
 </div>

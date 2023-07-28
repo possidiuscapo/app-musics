@@ -9,3 +9,5 @@ un sevice est une classe qui
      last : variable booléenne qui indique si l'élément est le dernier dans la liste
      even: variable booléenne qui indique si l'élément est pair
      odd: variable booléenne qui indique si l'élément est impair
+
+     myOsbserv

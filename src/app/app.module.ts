@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Routes, RouterModule } from '@angular/router';
 // Importation du modile d'animation
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { AlbumsComponent } from './albums/albums.component';
@@ -11,8 +11,8 @@ import { AlbumDetailsComponent } from './album-details/album-details.component';
 import { SearchComponent } from './search/search.component';
 import { LoginComponent } from './login/login.component';
 import { AlbumDescriptionComponent } from './album-description/album-description.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { OpenCloseComponent } from './open-close/open-close.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 
 const albumsRoutes: Routes = [
@@ -23,7 +23,7 @@ const albumsRoutes: Routes = [
     component: AlbumsComponent
   },
   {
-    path: '',
+    path: ' ',
     redirectTo: '/albums',
     pathMatch: 'full'
   },
@@ -41,7 +41,7 @@ const albumsRoutes: Routes = [
   },
 
   {
-    path: '***',
+    path: '...',
     component: PageNotFoundComponent
   }
 ];
