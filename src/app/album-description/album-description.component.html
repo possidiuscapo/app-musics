@@ -1,23 +1,25 @@
 <!-- <p>album-description works!</p> -->
-<div *ngIf="album" [@fadeInAnimation]>
+<div *ngIf="album" [@fadeInAnimation] style="background-color: #575757cb;">
     <div class="card-header shadow-sm p-3 mb-5"
         style="background-color: rgb(115, 115, 115); color: white; font-weight: 600; font-size: 1.5rem; width: 200px;">
         {{ album.ref }}
         <!-- <span *ngIf="status === album.id">[play]</span> -->
     </div>
-    <div class="card-body">
-        <h1>{{album.title}}</h1>
-        <p class="card-text" style="text-transform: capitalize; font-weight: 500; font-size: 1.1rem; "><small class="me-2" style="font-size: 20px;">Name :</small> {{album.name}}</p>
-        <p class="card-text"><small></small> {{album.description}} </p>
-        <p><small class="me-2" style="font-size: 20px; ">Duration:</small>{{album.duration}} min</p>
-        <p><small class="me-2" style="font-size: 20px; ">Like:</small>{{album.like}}</p>
-        <ul class="list-group list-group-horizontal mb-3 col-sm-3 fw-bold">
-            <li class="list-group-item list-group-item-action list-group-item-dark mx-1 rounded"
-                *ngFor="let tag of album.tags"
-                style="text-transform: capitalize; color: white; background-color: rgb(46, 46, 46);">{{tag}}</li>
-        </ul>
-    </div>
-    <div>
-        <img class="card-img-top" src="{{album.url}}" alt="Group Music">
+    <div class="d-flex">
+        <div class="card-body" style="width: 50%;">
+            <h1>{{album.title}}</h1>
+            <p class="card-text" style="text-transform: capitalize; font-weight: 500; font-size: 1.1rem; color: white;"><small class="me-2" style="font-size: 20px;">Name :</small> {{album.name}}</p>
+            <p class="card-text" style="color: white;"><small></small> {{album.description}} </p>
+            <p style="color: white;"><small class="me-2" style="font-size: 20px; color: white;">Duration:</small>{{album.duration}} min</p>
+            <p style="color: white;"><small class="me-2" style="font-size: 20px; color: white;">Like:</small>{{album.like}}</p>
+            <ul class="list-group list-group-horizontal mb-3 col-sm-3 fw-bold">
+                <li class="list-group-item list-group-item-action list-group-item-dark mx-1 rounded"
+                    *ngFor="let tag of album.tags"
+                    style="text-transform: capitalize; color: white; background-color: rgb(46, 46, 46);">{{tag}}</li>
+            </ul>
+        </div>
+        <div style="width: 50%;">
+            <img style="width: 50%;" class=" mx-auto d-block" src="{{album.url}}" alt="Group Music">
+        </div>
     </div>
 </div>

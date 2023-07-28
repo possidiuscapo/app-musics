@@ -10,31 +10,31 @@
             <h1 class="mb-4" >{{ titlePage }}</h1>
             <!-- <span>Total {{albums.length}}</span> -->
         </div>
-        <div class="card mb-3 shadow-sm mb-5 " *ngFor="let album of albums" style="background-color: #909090cb;">
+        <div class="card mb-3 shadow-sm mb-5 " *ngFor="let album of albums" style="background-color: #737373cb;">
             <div class="card-header shadow-sm p-2"
-                style="background-color: rgb(115, 115, 115); color: white; font-weight: 600; font-size: 1.5rem;">
+                style="background-color: rgb(72, 72, 72); color: white; font-weight: 600; font-size: 1.5rem;">
                 {{ album.ref }}
                 <span *ngIf="status === album.id" class="fas fa-pause"></span>
             </div>
             <div class="card-body ">
-                <h5 class="card-title" style="text-transform: capitalize; color: white;"><a class="text-info"
+                <h5 class="card-title" style="text-transform: capitalize; color: white;"><a class="text-warning"
                         routerLink="/album/{{album.id}}">{{album.title}}</a> </h5>
                 <p class="card-text" style="text-transform: initial; color: white;"> {{ album.description }} </p>
                 <div class="row content">
                     <ul class="list-group list-group-horizontal mb-3 col-sm-3 fw-bold">
                         <li class="list-group-item list-group-item-action list-group-item-dark mx-1 rounded shadow border border-0"
-                            *ngFor="let tag of album.tags" style="text-transform: capitalize; color: white; background-color: rgb(99, 99, 99);">{{tag}}
+                            *ngFor="let tag of album.tags" style="text-transform: capitalize; color: white; background-color: rgb(114, 114, 114);">{{tag}}
                         </li>
                     </ul>
                 </div>
-                <a class="btn btn-outline-light me-1" href="#" role="button"
-                    style="text-transform: capitalize; font-weight: 600;">en</a>
+                <a class="btn btn-outline-light me-1" href="#" role="button" style="text-transform: capitalize; font-weight: 600;">en</a>
                 <img class="glyph-icon me-1" width="20px" height="auto" src="./assets/svg/si-glyph-heart.svg" />
                 <small class="me-2" style="font-size: 20px; color: white;">Mush</small>
-                <img class="glyph-icon me-1" width="20px" height="auto" src="./assets/svg/si-glyph-timer.svg" />
+                <img class="glyph-icon me-1" width="20px" height="auto" src="./assets/svg/si-glyph-timer.svg" style="fill: white;" />
                 <small style="font-size: 20px; color: white;"> {{album.duration}} min</small><br>
                 <a routerLink="/albums"><button type="button" class="btn mt-2" (click)="onSelect(album)" style="background-color: rgb(121, 121, 121); color: white; font-size: 1.3rem">More</button></a>
             </div>
         </div><!-- .card -->
+        <app-paginate></app-paginate>
     </div><!-- .music -->
 </div>

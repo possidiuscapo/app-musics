@@ -41,7 +41,7 @@ const albumsRoutes: Routes = [
   //   component: OpenCloseComponent
   // },
   {
-    path: '***',
+    path: '**',
     component: PageNotFoundComponent
   }
 ];

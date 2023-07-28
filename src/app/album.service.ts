@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
+import { environment } from 'src/environment/environment';
 import { Album, List, SortAlbumCallback } from './album';
 import { ALBUMS, ALBUM_LISTS } from './mock-albums';
 // import { SearchComponent } from "./search/search.component";
@@ -13,6 +15,9 @@ export class AlbumService {
 
   private _albums: Album[] = ALBUMS;
   private _albumsList: List[] = ALBUM_LISTS;
+
+  //un observable qui notifi au abonné la page actuelle
+  sendCurrentNumberPage = new Subject<number>()
 
   constructor() { }
 
@@ -68,7 +73,11 @@ export class AlbumService {
   //   return this._albums.filter(album => album)
   // }
 
-  paginate(){
-    
+  paginateNumberPage(): number{
+    return environment.numberPage;
+  }
+
+  currentPage(numberPage: number){
+    return this.sendCurrentNumberPage.next(numberPage)
   }
 }
