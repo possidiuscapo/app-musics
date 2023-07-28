@@ -67,4 +67,8 @@ export class AlbumService {
   // searchAlbum(word:string) : Album[]{
   //   return this._albums.filter(album => album)
   // }
+
+  paginate(){
+    
+  }
 }

@@ -13,7 +13,8 @@ import { LoginComponent } from './login/login.component';
 import { AlbumDescriptionComponent } from './album-description/album-description.component';
 import { OpenCloseComponent } from './open-close/open-close.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-
+import { PaginateComponent } from './paginate/paginate.component';
+import { FirstCompoComponent } from './first-compo/first-compo.component';
 
 const albumsRoutes: Routes = [
   {
@@ -23,7 +24,7 @@ const albumsRoutes: Routes = [
     component: AlbumsComponent
   },
   {
-    path: ' ',
+    path: '',
     redirectTo: '/albums',
     pathMatch: 'full'
   },
@@ -35,13 +36,12 @@ const albumsRoutes: Routes = [
     path: 'album/:id',
     component: AlbumDescriptionComponent
   },
+  // {
+  //   path: 'openclose',
+  //   component: OpenCloseComponent
+  // },
   {
-    path: 'openclose',
-    component: OpenCloseComponent
-  },
-
-  {
-    path: '...',
+    path: '***',
     component: PageNotFoundComponent
   }
 ];
@@ -56,13 +56,15 @@ const albumsRoutes: Routes = [
     AlbumDescriptionComponent,
     OpenCloseComponent,
     PageNotFoundComponent,
+    PaginateComponent,
+    FirstCompoComponent
   ],
   imports: [
     BrowserModule,
     // NgModule,
     FormsModule,
-    BrowserAnimationsModule,
     RouterModule.forRoot(albumsRoutes),
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

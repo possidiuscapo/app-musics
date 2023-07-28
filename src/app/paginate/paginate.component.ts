@@ -6,5 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./paginate.component.css']
 })
 export class PaginateComponent {
-
+  perPage: number | undefined;
+  totale: number | undefined;
+  next(){};
+  previous(){};
 }
