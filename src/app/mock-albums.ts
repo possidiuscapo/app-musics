@@ -233,7 +233,10 @@ export const ALBUM_LISTS : List[]  = [
       "list": [
         "nulla",
         "velit",
-        "do"
+        "do",
+        "minim",
+        "nisi",
+        "labore",
       ]
     },
     {

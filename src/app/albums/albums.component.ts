@@ -24,15 +24,19 @@ export class AlbumsComponent implements OnInit {
     private albumService: AlbumService
    ) { }
   ngOnInit() {
-    this.albums = this.albumService
-                                                 .order((a:Album, b: Album) => a.duration - b.duration)
-                                                //  .limite(0, 10)
-                                                 .limite(0, this.albumService.count())
-                                                 .getAlbums()
+    this.albums = this.albumService.paginate( 0, this.albumService.paginateNumberPage())
+                                                //  .order((a:Album, b: Album) => a.duration - b.duration)
+                                                // //  .limite(0, 10)
+                                                //  .limite(0, this.albumService.count())
+                                                //  .getAlbums()
   }
   onSelect(album: Album) : void{
     this.selectedAlbum = album;
 
+  }
+
+  onSetPaginate($event: { start: number; end: number; }){
+    this.albums = this.albumService.paginate($event.start, $event.end)
   }
   playParent($event : any){
     // console.log(typeof $event)
