@@ -6,7 +6,7 @@
         <form class="form-inline my-2 my-lg-0 d-flex" (ngSubmit)="onSubmit(formSearch)" #formSearch="ngForm">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="word"
                 [(ngModel)]="word" (ngModelChange)="onChangeEmit($event)" required>
-            <a href="#"><button class="btn btn-outline-success" type="submit">Search</button></a>
+            <a href="#"><button class="btn btn-warning" type="submit">Search</button></a>
         </form>
     </div>
 </nav>

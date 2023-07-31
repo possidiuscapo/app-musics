@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AlbumService } from '../album.service';
 
 @Component({
@@ -15,6 +15,15 @@ export class PaginateComponent implements OnInit{
   numberPages :number = 0;
 
   pages :number[] =[]
+
+  //emetteur d'évènement 
+
+  @Output() setPaginate: EventEmitter<{start :number, end: number}> = new EventEmitter;
+
+  //variable qui stock la page actuelle
+
+  currentPage : number  = 1; 
+
   constructor(
     private albumService : AlbumService
   ){
@@ -30,6 +39,42 @@ export class PaginateComponent implements OnInit{
     }
   }
 
-  next(){};
-  previous(){};
+  next(){
+    // this.currentPage++;
+    if(this.currentPage >= this.numberPages){
+      // this.currentPage = 1
+      return;
+    }else{
+      this.currentPage++
+    }
+    this.setPaginate.emit(this.setAlbums(this.currentPage))
+    
+    console.log(this.currentPage);
+  };
+  
+  previous(){
+    // this.currentPage--;
+    if(this.currentPage <= 1){
+      // this.currentPage = 1
+      return;
+    }else{
+      this.currentPage--
+    }
+    this.setPaginate.emit(this.setAlbums(this.currentPage))
+    console.log(this.currentPage);
+  };
+
+  /**
+   * function qui retourne le sous ensemble d'albums à afficer
+   */
+   setAlbums(page: number): {start: number, end: number}{
+    let start = (page - 1) * this.perPage
+    let end = start + this.perPage
+
+    // return {start : start, end : start}
+    return {start, end}
+   }
+    changePage(page: number ){
+      this.setPaginate.emit(this.setAlbums(page))
+    }
 }

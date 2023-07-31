@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { environment } from 'src/environment/environment';
 import { Album, List, SortAlbumCallback } from './album';
+import { AlbumsComponent } from './albums/albums.component';
 import { ALBUMS, ALBUM_LISTS } from './mock-albums';
 // import { SearchComponent } from "./search/search.component";
 
@@ -9,6 +10,7 @@ import { ALBUMS, ALBUM_LISTS } from './mock-albums';
   providedIn: 'root'
 })
 export class AlbumService {
+  
   static getAlbumList(id: any) {
     throw new Error('Method not implemented.');
   }
@@ -22,7 +24,7 @@ export class AlbumService {
   constructor() { }
 
   getAlbums(): Album[] {
-    return this._albums
+    return this._albums.sort()
   }
   getAlbum(id: string): Album | undefined {
     return this._albums.find(album => album.id === id)
@@ -75,6 +77,9 @@ export class AlbumService {
 
   paginateNumberPage(): number{
     return environment.numberPage;
+  }
+  paginate(start: number, end: number): Album[]  {
+    return  this.getAlbums().slice(start,end)
   }
 
   currentPage(numberPage: number){
