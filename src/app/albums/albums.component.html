@@ -1,6 +1,6 @@
 <app-search (searchAlbums)="search($event)"></app-search>
 <div class="row content" *ngIf="albums" [@fadeInAnimation]>
-    <app-paginate (setPaginate)="onSetPaginate($event)"></app-paginate>
+    <!-- <app-paginate (setPaginate)="onSetPaginate($event)"></app-paginate> -->
     <div class="col-sm-4 video ">
         <div class="card border border-0 shadow mb-2 relative">
             <app-album-details [album]="selectedAlbum" (onPlay)="playParent($event)"></app-album-details>
@@ -23,8 +23,8 @@
                 <p class="card-text text-white" style="text-transform: initial;"> {{ album.description }} </p>
                 <div class="row content">
                     <ul class="list-group list-group-horizontal mb-3 col-sm-3 fw-bold">
-                        <li class="list-group-item list-group-item-action list-group-item-dark mx-1 rounded shadow border border-0 text-white"
-                            *ngFor="let tag of album.tags" style="text-transform: capitalize; background-color: rgb(114, 114, 114);">{{tag}}
+                        <li class="list-group-item list-group-item-action list-group-item-dark mx-1 rounded shadow-sm border border-0 text-white"
+                            *ngFor="let tag of album.tags" style="text-transform: capitalize; background-color: rgb(114, 114, 114);" aria-current="true">{{tag}}
                         </li>
                     </ul>
                 </div>
@@ -36,6 +36,6 @@
                 <a routerLink="/albums"><button type="button" class="btn mt-2 text-white" (click)="onSelect(album)" style="background-color: rgb(121, 121, 121);font-size: 1.3rem">More</button></a>
             </div>
         </div><!-- .card -->
-        <app-paginate ></app-paginate>
+        <app-paginate (setPaginate)="onSetPaginate($event)"></app-paginate>
     </div><!-- .music -->
 </div>
