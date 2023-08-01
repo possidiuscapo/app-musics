@@ -1,10 +1,12 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AlbumService } from '../album.service';
+import { fadeInAnimation } from '../animation.module';
 
 @Component({
   selector: 'app-paginate',
   templateUrl: './paginate.component.html',
-  styleUrls: ['./paginate.component.css']
+  styleUrls: ['./paginate.component.css'],
+  animations:[fadeInAnimation]
 })
 export class PaginateComponent implements OnInit {
   //nombre totale d'albums
@@ -48,7 +50,7 @@ export class PaginateComponent implements OnInit {
       this.currentPage++
     }
     this.setPaginate.emit(this.setAlbums(this.currentPage))
-
+    fadeInAnimation
     console.log(this.currentPage);
   };
 
