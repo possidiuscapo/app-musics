@@ -19,7 +19,7 @@ export class AlbumDescriptionComponent implements OnInit {
   ) { }
   ngOnInit() {
     // permet de récupérer l'identifiant
-    const id = this.route.snapshot.params['id'];
+    const id = this.route.snapshot.params['albumId'];
 
     this.album = this.aS.getAlbum(id)
     console.log(this.album)

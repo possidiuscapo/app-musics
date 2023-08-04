@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { trigger, state, style, animate, transition, } from "@angular/animations";
+import { interval } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -27,3 +28,5 @@ export class AppComponent {
 
 
 }
+
+const count = interval(1000);

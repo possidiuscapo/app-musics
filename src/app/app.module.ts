@@ -33,7 +33,7 @@ const albumsRoutes: Routes = [
     component: LoginComponent
   },
   {
-    path: 'album/:id',
+    path: 'album/:albumId',
     component: AlbumDescriptionComponent
   },
   // {
