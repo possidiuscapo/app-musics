@@ -46,8 +46,9 @@ export class AlbumDetailsComponent implements OnInit, OnChanges {
     }
   }
   
-  play(album: Album) {
-    this.onPlay.emit(album)
-    console.log("Joueur l'album " + album.name)
+  play(songs: Album) {
+    this.onPlay.emit(songs)
+    this.albumService.switchOn(songs)
+    // console.log("Joueur l'album " + this.album.name)
   }
 }

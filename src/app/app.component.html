@@ -23,8 +23,10 @@
               </li>
             </ul>
           </div>
+          <ul><li *ngIf="count" > time: {{ count }} </li></ul>
         </div>
   </nav>
+  <app-audio-player></app-audio-player>
   <!-- C'est la parti ou sera rendu tous les enfants de ce componant -->
   <router-outlet></router-outlet>
   <!-- <app-albums></app-albums> -->

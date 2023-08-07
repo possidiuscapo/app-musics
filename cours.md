@@ -2,7 +2,7 @@
 
 un sevice est une classe qui 
 # *ngFor
- Lorsque nus utilions la directive *ngFor, Angular crré un ensemble de variables pour chaque itération. Les variables créés sont: 
+ Lorsque nous utilions la directive *ngFor, Angular crré un ensemble de variables pour chaque itération. Les variables créés sont: 
      
      index : variables qui stock l'indice de l'élément actuel 
      first: variable booléenne qi indique si l'élément est le premier  dans la liste 

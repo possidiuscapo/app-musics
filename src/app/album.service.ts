@@ -10,11 +10,12 @@ import { ALBUMS, ALBUM_LISTS } from './mock-albums';
   providedIn: 'root'
 })
 export class AlbumService {
+  subjectAlbum= new Subject<Album>;
   
   static getAlbumList(id: any) {
     throw new Error('Method not implemented.');
   }
-
+  // subject
   private _albums: Album[] = ALBUMS;
   private _albumsList: List[] = ALBUM_LISTS;
 
@@ -84,5 +85,34 @@ export class AlbumService {
 
   currentPage(numberPage: number){
     return this.sendCurrentNumberPage.next(numberPage)
+  }
+  /**
+   * Méthode qui permet de cha,ger le startus d'un album a "On"
+   * @param album : l'album dont le startus doit passer à "On"
+   */
+  switchOn(album: Album){
+    this._albums.forEach(a =>{
+      if (a.id === album.id) {
+        a.status = "on"
+        album.status = "on"
+      } else {
+        a.status = "off"
+      }
+    });
+    this.subjectAlbum.next(album)
+  }
+
+  /**
+   * Méthode qui permet de cha,ger le startus d'un album a "Off"
+   * @param album : l'album dont le startus doit passer à "Off"
+   */
+  switchOff(album: Album){
+    this._albums.forEach(a =>{
+      if (a.id === album.id) {
+        a.status = "off"
+        // console.log(a.status)
+      }
+    });
+    this.subjectAlbum.next(album)
   }
 }
