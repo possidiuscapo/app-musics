@@ -1,47 +1,63 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
-import { environment } from 'src/environment/environment';
+import { map, Observable, Subject } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Album, List, SortAlbumCallback } from './album';
 import { AlbumsComponent } from './albums/albums.component';
-import { ALBUMS, ALBUM_LISTS } from './mock-albums';
+import { HttpClient } from "@angular/common/http";
+// import { ALBUMS, ALBUM_LISTS } from './mock-alb';
 // import { SearchComponent } from "./search/search.component";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AlbumService {
-  subjectAlbum= new Subject<Album>;
-  
-  static getAlbumList(id: any) {
-    throw new Error('Method not implemented.');
-  }
+
+  // static getAlbumList(id: any) {
+  //   throw new Error('Method not implemented.');
+  // }
   // subject
-  private _albums: Album[] = ALBUMS;
-  private _albumsList: List[] = ALBUM_LISTS;
+  private _albumsUrl: string = environment.albumsUrl;
+  private _albumListUrl: string = environment.albumListsUrl;
 
   //un observable qui notifi au abonné la page actuelle
+  subjectAlbum = new Subject<Album>;
   sendCurrentNumberPage = new Subject<number>()
 
-  constructor() { }
+  constructor(private https: HttpClient) { }
 
-  getAlbums(): Album[] {
-    return this._albums.sort()
+  getAlbums(): Observable<Album[]> {
+    return this.https.get<Album[]>(this._albumsUrl).pipe(
+      map((albums: Album[]) => {
+        return albums.sort(
+          (a: Album, b: Album) => b.duration - a.duration
+        )
+      })
+    )
   }
-  getAlbum(id: string): Album | undefined {
-    return this._albums.find(album => album.id === id)
+
+  /** */
+  getAlbum(id: string): Observable<Album> {
+    return this.https.get<Album>(this._albumsUrl  + id).pipe(
+      map((album: Album) => album));
   }
-  getAlbumList(id: string): List | undefined {
-    return this._albumsList.find(list => list.id === id)
+
+  /** */
+  getAlbumList(id: string): Observable<List> {
+    return this.https.get<List>(this._albumListUrl + id)
   }
 
   count() {
-    return this._albums.length
+    return this.https.get<Album[]>(this._albumListUrl).pipe(
+      map((albums: Album[]) => albums.length)
+    )
   }
 
   // order(): AlbumService{
   //   this._albums.sort((a,b)=>a.duration - b.duration)
   //   return this
   // }
+
+  /**
   order(callback: SortAlbumCallback): AlbumService {
     this._albums.sort(callback)
     return this
@@ -51,21 +67,25 @@ export class AlbumService {
     this._albums = this._albums.slice(start, end);
     return this;
   }
-
+*/
 
   // paginate(start: number, end : number): Album[]{
   //   return this._albums
   //   .slice(start,end)
   //   .sort((a:Album, b: Album) =>b.duration - a.duration)
   // }
-// Recherche des albums et  afficher
-  search(word: string): Album[] {
-    return this._albums
-      .filter(album => {
-        return album.title
-          .toLowerCase()
-          .includes(word.trim().toLowerCase());
+  // Recherche des albums et  afficher
+  search(word: string): Observable<Album[]> {
+    return this.https.get<Album[]>(this._albumsUrl).pipe(
+      map((albums: Album[]) => {
+        return albums.filter(album => {
+          return album.title
+            .toLowerCase()
+            .includes(word.trim().toLowerCase());
+        })
       })
+    )
+      
   }
   // serchV2(word: string): Album[]{
   //    let re = new RegExp(word.trim(),"g");
@@ -76,43 +96,65 @@ export class AlbumService {
   //   return this._albums.filter(album => album)
   // }
 
-  paginateNumberPage(): number{
+  paginateNumberPage(): number {
     return environment.numberPage;
   }
-  paginate(start: number, end: number): Album[]  {
-    return  this.getAlbums().slice(start,end)
+  paginate(start: number, end: number): Observable<Album[]> {
+    return this.https.get<Album[]>(this._albumListUrl).pipe(
+      map(
+        (albums) => albums.sort(
+          (a, b) => b.duration - a.duration
+        ).slice(start, end)
+      ));
   }
 
-  currentPage(numberPage: number){
+
+  shuffle(songs: string[]) {
+    for (let i = songs.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [songs[i], songs[j]] = [songs[j], songs[i]];
+    }
+    return songs;
+  }
+  
+  currentPage(numberPage: number) {
     return this.sendCurrentNumberPage.next(numberPage)
   }
   /**
    * Méthode qui permet de cha,ger le startus d'un album a "On"
    * @param album : l'album dont le startus doit passer à "On"
    */
-  switchOn(album: Album){
-    this._albums.forEach(a =>{
-      if (a.id === album.id) {
-        a.status = "on"
-        album.status = "on"
-      } else {
-        a.status = "off"
-      }
-    });
-    this.subjectAlbum.next(album)
+  switchOn(album: Album) : void {
+    album.status = "on";
+    this.https.put<void>(this._albumsUrl + "/" + album.id, album)
+    /**return this.https.get<Album[]>(this._albumListUrl).pipe(
+      map(
+        (albums) => albums.forEach(a => {
+          if (a.id === album.id) {
+            a.status = "on"
+            album.status = "on"
+          } else {
+            a.status = "off"
+          }
+        }))
+   
+    this.subjectAlbum.next(album)*/
   }
 
   /**
    * Méthode qui permet de cha,ger le startus d'un album a "Off"
    * @param album : l'album dont le startus doit passer à "Off"
    */
-  switchOff(album: Album){
-    this._albums.forEach(a =>{
-      if (a.id === album.id) {
-        a.status = "off"
-        // console.log(a.status)
-      }
-    });
-    this.subjectAlbum.next(album)
+  switchOff(album: Album) {
+    album.status= "off";
+    this.https.put<void>(`${this._albumsUrl}/${album.id}`,album).subscribe(() =>{})
+    /**
+     * renvoi un observable; est ne s'exécute
+     * donc
+     */
+    // this._albums.forEach(a => a.status = "off"
+    //     // console.log(a.status)
+    // )
+ 
   }
 }

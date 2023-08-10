@@ -34,11 +34,12 @@ export class PaginateComponent implements OnInit {
 
   ngOnInit(): void {
     // throw new Error('Method not implemented.');
-    this.totale = this.albumService.count()
+    this.albumService.count().subscribe
+    ((num: number)=>{this.totale = num;
     this.numberPages = Math.ceil(this.totale / this.perPage)
     for (let i = 1; i <= this.numberPages; i++) {
       this.pages.push(i);
-    }
+    }})
   }
 
   next() {

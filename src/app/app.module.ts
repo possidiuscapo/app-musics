@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Routes, RouterModule } from '@angular/router';
+import { HttpClientModule } from "@angular/common/http";
 // Importation du modile d'animation
 
 import { AppComponent } from './app.component';
@@ -41,6 +42,8 @@ const albumsRoutes: Routes = [
   //   path: 'openclose',
   //   component: OpenCloseComponent
   // },
+
+  /*========= ATTENTION DANGER ==========*/
   {
     path: '**',
     component: PageNotFoundComponent
@@ -65,8 +68,13 @@ const albumsRoutes: Routes = [
     BrowserModule,
     // NgModule,
     FormsModule,
-    RouterModule.forRoot(albumsRoutes),
     BrowserAnimationsModule,
+
+    /**
+     * Methode utilise pour  les toutes dans 
+     */
+    RouterModule.forRoot(albumsRoutes),
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

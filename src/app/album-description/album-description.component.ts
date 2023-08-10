@@ -21,8 +21,8 @@ export class AlbumDescriptionComponent implements OnInit {
     // permet de récupérer l'identifiant
     const id = this.route.snapshot.params['albumId'];
 
-    this.album = this.aS.getAlbum(id)
-    console.log(this.album)
+    this.aS.getAlbum(id)?.subscribe(album =>{this.album = album})
+    // console.log(this.album)
     // TODO récupérez le détail d'un album
   }
 }

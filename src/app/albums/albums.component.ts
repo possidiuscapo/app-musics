@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
-
 // Importez la définition de la classe et les albums
 import { Album } from '../album';
 import { AlbumService } from '../album.service';
@@ -16,15 +14,19 @@ import { fadeInAnimation } from '../animation.module';
 export class AlbumsComponent implements OnInit {
   titlePage: string = "Page principale Albums Music";
   albums: Album[] | undefined = undefined;
-  selectedAlbum!:  Album;
+  selectedAlbum:  Album | undefined;
   status: string | null = null
-
 
   constructor(
     private albumService: AlbumService
    ) { }
+
   ngOnInit() {
-    this.albums = this.albumService.paginate( 0, this.albumService.paginateNumberPage())
+    this.albumService
+    .paginate(0, this.albumService.paginateNumberPage())
+    .subscribe({
+      next: (alb: Album[]) =>{this.albums = alb}
+    })
                                                 //  .order((a:Album, b: Album) => a.duration - b.duration)
                                                 // //  .limite(0, 10)
                                                 //  .limite(0, this.albumService.count())
@@ -32,22 +34,30 @@ export class AlbumsComponent implements OnInit {
   }
   onSelect(album: Album) : void{
     this.selectedAlbum = album;
-
   }
 
-  onSetPaginate($event: { start: number; end: number; }){
-    this.albums = this.albumService.paginate($event.start, $event.end)
-  }
   playParent($event : any){
     // console.log(typeof $event)
     this.status = $event.id;
   }
-
+  
   search($event: Album[]){
-    console.log(`Parent sera mis à jour  et affichera seulement les albums ${$event}`)
+    // console.log(`Parent sera mis à jour et affichera seulement les albums ${$event}`)
     if ($event){
       this.albums = $event
     }
+  }
+
+  resetSelectedAlbum() {
+    this.selectedAlbum = undefined;
+  }
+
+  onSetPaginate($event: { start: number, end: number }) {
+    // Récupérer les albums compris entre [start et end]
+    this.albumService.paginate($event.start, $event.end)
+    .subscribe({
+      next: (al: Album[]) => this.albums = al
+    })
   }
 }
 

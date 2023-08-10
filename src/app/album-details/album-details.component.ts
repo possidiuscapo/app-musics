@@ -12,24 +12,29 @@ import { fadeInAnimation } from '../animation.module';
   templateUrl: './album-details.component.html',
   styleUrls: ['./album-details.component.css'],
   animations: [
-  fadeInAnimation
+    fadeInAnimation
   ]
 })
+// à chaque "HOOK" son interface
 export class AlbumDetailsComponent implements OnInit, OnChanges {
   // Classe Input permet de récupérer les data de l'enfant
   // album est liée à une entrée [album] du parent dans le sélecteur
-  @Input() album!: Album | undefined;
+  @Input() album!: Album | undefined; //propriété liée  qui sera passé par le parent
   @Output() onPlay: EventEmitter<Album> = new EventEmitter();
-  tabDeList!: string[] | undefined;
+  @Output() onHide: EventEmitter<Album> = new EventEmitter()
+
+  /** tableau qui stock la liste des chansons de l'album */
+  tabDeList: string[] | undefined;
+
   albumLists: List[] = [];
 
 
   constructor(
-    private albumService : AlbumService
+    private albumService: AlbumService
   ) { }
 
   ngOnInit() {
-    
+
   }
 
   ngOnChanges() {
@@ -42,13 +47,22 @@ export class AlbumDetailsComponent implements OnInit, OnChanges {
    }*/
 
     if (this.album) {
-      this.tabDeList = this.albumService.getAlbumList(this.album.id)?.list;
+      this.albumService.getAlbumList(this.album.id).subscribe(
+        (albumL) =>{ this.tabDeList = albumL.list}
+      );
     }
   }
-  
+
   play(songs: Album) {
     this.onPlay.emit(songs)
     this.albumService.switchOn(songs)
     // console.log("Joueur l'album " + this.album.name)
   }
+
+  shuffleAlbum(songs: string[]){
+    this.tabDeList = this.albumService.shuffle(songs)
+  }
+  hide(album: Album) {
+    this.onHide.emit(album);
+  }  
 }

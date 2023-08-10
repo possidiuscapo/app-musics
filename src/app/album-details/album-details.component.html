@@ -9,6 +9,10 @@
             style="background-color: rgb(225, 155, 2);color: rgb(249, 232, 224); font-size: 1.2rem; font-weight: 600;">Play
             <span class="fas fa-play ms-2"></span>
         </button>
+        <button (click)="hide(album)" class="btn"
+            style="background-color: rgb(225, 54, 2);color: rgb(249, 232, 224); font-size: 1.2rem; font-weight: 600;">Play
+            <span class="ms-2">Hide</span>
+        </button>
     </div>
     <ul class="list-group border border-0">
         <li class="list-group-item border border-0" *ngFor=" let tab of tabDeList"
