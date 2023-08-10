@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Routes, RouterModule } from '@angular/router';
+import { HttpClientModule } from "@angular/common/http";
 // Importation du modile d'animation
 
 import { AppComponent } from './app.component';
@@ -15,6 +16,9 @@ import { OpenCloseComponent } from './open-close/open-close.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { PaginateComponent } from './paginate/paginate.component';
 import { FirstCompoComponent } from './first-compo/first-compo.component';
+import { AudioPlayerComponent } from './audio-player/audio-player.component';
+import { AlbumComponent } from './admin/album/album.component';
+import { AdminModule } from './admin/admin.module';
 
 const albumsRoutes: Routes = [
   {
@@ -33,13 +37,19 @@ const albumsRoutes: Routes = [
     component: LoginComponent
   },
   {
-    path: 'album/:id',
+    path: 'album/:albumId',
     component: AlbumDescriptionComponent
+  },
+  {
+    path: '/admin/album',
+    component: AlbumComponent 
   },
   // {
   //   path: 'openclose',
   //   component: OpenCloseComponent
   // },
+
+  /*========= ATTENTION DANGER ==========*/
   {
     path: '**',
     component: PageNotFoundComponent
@@ -57,14 +67,22 @@ const albumsRoutes: Routes = [
     OpenCloseComponent,
     PageNotFoundComponent,
     PaginateComponent,
-    FirstCompoComponent
+    FirstCompoComponent,
+    AudioPlayerComponent,
+    AlbumComponent
   ],
   imports: [
     BrowserModule,
     // NgModule,
     FormsModule,
-    RouterModule.forRoot(albumsRoutes),
     BrowserAnimationsModule,
+
+    /**
+     * Methode utilise pour  les toutes dans 
+     */
+    RouterModule.forRoot(albumsRoutes),
+    HttpClientModule,
+    AdminModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
