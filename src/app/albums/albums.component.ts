@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Album } from '../album';
 import { AlbumService } from '../album.service';
 import { fadeInAnimation } from '../animation.module';
+
 // import { ALBUMS } from '../mock-albums';
 
 @Component({
@@ -15,22 +16,29 @@ export class AlbumsComponent implements OnInit {
   titlePage: string = "Page principale Albums Music";
   albums: Album[] | undefined = undefined;
   selectedAlbum:  Album | undefined;
-  status: string | null = null
+  status: string | null = null;
+  compt: number = 1;
+
 
   constructor(
     private albumService: AlbumService
    ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.albumService
     .paginate(0, this.albumService.paginateNumberPage())
     .subscribe({
       next: (alb: Album[]) =>{this.albums = alb}
     })
+
+    console.log(this.albums)
                                                 //  .order((a:Album, b: Album) => a.duration - b.duration)
                                                 // //  .limite(0, 10)
                                                 //  .limite(0, this.albumService.count())
                                                 //  .getAlbums()
+  }
+  onHideAlbum(){
+    this.compt++
   }
   onSelect(album: Album) : void{
     this.selectedAlbum = album;

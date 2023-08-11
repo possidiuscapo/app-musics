@@ -16,17 +16,17 @@ export class AlbumService {
   //   throw new Error('Method not implemented.');
   // }
   // subject
-  private _albumsUrl: string = environment.albumsUrl;
-  private _albumListUrl: string = environment.albumListsUrl;
+  private _albumsUrl: string = environment.albumUrl;
+  private _albumListUrl: string = environment.albumListUrl;
 
   //un observable qui notifi au abonné la page actuelle
   subjectAlbum = new Subject<Album>;
   sendCurrentNumberPage = new Subject<number>()
 
-  constructor(private https: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   getAlbums(): Observable<Album[]> {
-    return this.https.get<Album[]>(this._albumsUrl).pipe(
+    return this.http.get<Album[]>(this._albumsUrl).pipe(
       map((albums: Album[]) => {
         return albums.sort(
           (a: Album, b: Album) => b.duration - a.duration
@@ -37,17 +37,17 @@ export class AlbumService {
 
   /** */
   getAlbum(id: string): Observable<Album> {
-    return this.https.get<Album>(this._albumsUrl  + id).pipe(
+    return this.http.get<Album>(this._albumsUrl  + id).pipe(
       map((album: Album) => album));
   }
 
   /** */
   getAlbumList(id: string): Observable<List> {
-    return this.https.get<List>(this._albumListUrl + id)
+    return this.http.get<List>(this._albumListUrl + id)
   }
 
   count() {
-    return this.https.get<Album[]>(this._albumListUrl).pipe(
+    return this.http.get<Album[]>(this._albumListUrl).pipe(
       map((albums: Album[]) => albums.length)
     )
   }
@@ -76,7 +76,7 @@ export class AlbumService {
   // }
   // Recherche des albums et  afficher
   search(word: string): Observable<Album[]> {
-    return this.https.get<Album[]>(this._albumsUrl).pipe(
+    return this.http.get<Album[]>(this._albumsUrl).pipe(
       map((albums: Album[]) => {
         return albums.filter(album => {
           return album.title
@@ -100,7 +100,7 @@ export class AlbumService {
     return environment.numberPage;
   }
   paginate(start: number, end: number): Observable<Album[]> {
-    return this.https.get<Album[]>(this._albumListUrl).pipe(
+    return this.http.get<Album[]>(this._albumListUrl).pipe(
       map(
         (albums) => albums.sort(
           (a, b) => b.duration - a.duration
@@ -126,8 +126,8 @@ export class AlbumService {
    */
   switchOn(album: Album) : void {
     album.status = "on";
-    this.https.put<void>(this._albumsUrl + "/" + album.id, album)
-    /**return this.https.get<Album[]>(this._albumListUrl).pipe(
+    this.http.put<void>(this._albumsUrl + "/" + album.id, album)
+    /**return this.http.get<Album[]>(this._albumListUrl).pipe(
       map(
         (albums) => albums.forEach(a => {
           if (a.id === album.id) {
@@ -147,7 +147,7 @@ export class AlbumService {
    */
   switchOff(album: Album) {
     album.status= "off";
-    this.https.put<void>(`${this._albumsUrl}/${album.id}`,album).subscribe(() =>{})
+    this.http.put<void>(`${this._albumsUrl}/${album.id}`,album).subscribe(() =>{})
     /**
      * renvoi un observable; est ne s'exécute
      * donc

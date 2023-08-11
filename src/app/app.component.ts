@@ -30,7 +30,9 @@ export class AppComponent implements OnInit {
   timersIntervale!: Observable<string>
   count!: string
   constructor() { }
+ 
   ngOnInit(): void {
+    
     this.timersIntervale = interval(1000).pipe(
       take(3600 * 12),
       map((num: number) =>{
@@ -46,7 +48,9 @@ export class AppComponent implements OnInit {
   format(numb: number){
     return (numb<10 ? '0' : '') + numb
   }
-
+  parentReceive($event: string){
+    this.receivedText = $event;
+  }
 }
 
 // const count = interval(1000).pipe(take(60))
