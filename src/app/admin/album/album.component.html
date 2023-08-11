@@ -13,7 +13,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
+        <tr *ngFor = "let album of albums">
             <th scope="row">{{album.id}}</th>
             <th>
                 <button type="button" class="btn btn-secondary">update</button>

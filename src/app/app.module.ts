@@ -41,7 +41,7 @@ const albumsRoutes: Routes = [
     component: AlbumDescriptionComponent
   },
   {
-    path: '/admin/album',
+    path: 'admin',
     component: AlbumComponent 
   },
   // {
@@ -64,12 +64,12 @@ const albumsRoutes: Routes = [
     SearchComponent,
     LoginComponent,
     AlbumDescriptionComponent,
-    OpenCloseComponent,
+    // OpenCloseComponent,
     PageNotFoundComponent,
     PaginateComponent,
     FirstCompoComponent,
     AudioPlayerComponent,
-    AlbumComponent
+    // AlbumComponent
   ],
   imports: [
     BrowserModule,

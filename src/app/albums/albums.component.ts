@@ -23,8 +23,13 @@ export class AlbumsComponent implements OnInit {
   constructor(
     private albumService: AlbumService
    ) { }
-  ngOnInit() {
-    this.albums = this.albumService.paginate( 0, this.albumService.paginateNumberPage())
+  ngOnInit(): void {
+    this.albumService.paginate( 0, this.albumService.paginateNumberPage())
+    .subscribe({
+      next : (alb:Album[]) =>  {
+        this.albums = alb
+      }
+    })
                                                 //  .order((a:Album, b: Album) => a.duration - b.duration)
                                                 // //  .limite(0, 10)
                                                 //  .limite(0, this.albumService.count())
@@ -36,7 +41,10 @@ export class AlbumsComponent implements OnInit {
   }
 
   onSetPaginate($event: { start: number; end: number; }){
-    this.albums = this.albumService.paginate($event.start, $event.end)
+    this.albumService.paginate($event.start, $event.end)
+    .subscribe({
+      next : (alb: Album[]) =>this.albums = alb
+    })
   }
   playParent($event : any){
     // console.log(typeof $event)

@@ -20,8 +20,10 @@ export class AlbumDetailsComponent implements OnInit, OnChanges {
   // album est liée à une entrée [album] du parent dans le sélecteur
   @Input() album!: Album | undefined;
   @Output() onPlay: EventEmitter<Album> = new EventEmitter();
-  tabDeList!: string[] | undefined;
+  @Output() onHide: EventEmitter<Album> = new EventEmitter();
   albumLists: List[] = [];
+  /**tableau qui stock la liste des chansons de l'album */
+  tabDeList: string[] | undefined =[];
 
 
   constructor(
@@ -42,12 +44,21 @@ export class AlbumDetailsComponent implements OnInit, OnChanges {
    }*/
 
     if (this.album) {
-      this.tabDeList = this.albumService.getAlbumList(this.album.id)?.list;
+      this.albumService.getAlbumList(this.album.id).subscribe(
+        (albumList) =>{this.tabDeList = albumList.list}
+      );
     }
   }
   
   play(album: Album) {
     this.onPlay.emit(album)
     console.log("Joueur l'album " + album.name)
+  }
+  shuffleAlbum(songs: string[]) {
+    this.tabDeList = this.albumService.shuffle(songs);
+  }
+
+  hide(album: Album) {
+    this.onHide.emit(album);
   }
 }
