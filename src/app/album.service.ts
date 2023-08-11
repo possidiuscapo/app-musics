@@ -36,7 +36,7 @@ export class AlbumService {
   }
 
   /** */
-  getAlbum(id: string): Observable<Album> {
+  getAlbum(id: string): Observable<Album> | undefined {
     return this.http.get<Album>(this._albumsUrl  + id).pipe(
       map((album: Album) => album));
   }
@@ -47,7 +47,7 @@ export class AlbumService {
   }
 
   count() {
-    return this.http.get<Album[]>(this._albumListUrl).pipe(
+    return this.http.get<Album[]>(this._albumsUrl).pipe(
       map((albums: Album[]) => albums.length)
     )
   }
@@ -100,7 +100,7 @@ export class AlbumService {
     return environment.numberPage;
   }
   paginate(start: number, end: number): Observable<Album[]> {
-    return this.http.get<Album[]>(this._albumListUrl).pipe(
+    return this.http.get<Album[]>(this._albumsUrl).pipe(
       map(
         (albums) => albums.sort(
           (a, b) => b.duration - a.duration

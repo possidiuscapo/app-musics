@@ -13,6 +13,7 @@
         </div>
         <ng-container *ngIf="albums; else notfound"  >
             <div class="card mb-3 shadow-sm mb-5 " *ngFor="let album of albums; let i = index;" style="background-color: #737373cb;">
+                <!-- {{ albums | json }} -->
                 <div class="card-header shadow-sm p-2 text-white"
                     style="background-color: rgb(72, 72, 72); font-weight: 600; font-size: 1.5rem;">
                     {{ album.ref }}

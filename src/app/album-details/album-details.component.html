@@ -9,13 +9,15 @@
             style="background-color: rgb(225, 155, 2);color: rgb(249, 232, 224); font-size: 1.2rem; font-weight: 600;">Play
             <span class="fas fa-play ms-2"></span>
         </button>
-        <button (click)="hide(album)" class="btn"
-            style="background-color: rgb(225, 54, 2);color: rgb(249, 232, 224); font-size: 1.2rem; font-weight: 600;">Play
-            <span class="ms-2">Hide</span>
-        </button>
+        <button  class="btn"
+            style="background-color: rgb(225, 54, 2);color: rgb(249, 232, 224); font-size: 1.2rem; font-weight: 600;">Hide
+            <!-- <span class="ms-2"></span> -->
+        </button> <!--(click)="hide(album)"-->
     </div>
     <ul class="list-group border border-0">
-        <li class="list-group-item border border-0" *ngFor=" let tab of tabDeList"
-            style="text-transform: capitalize; background-color: rgb(94, 93, 93); color: white; font-weight: 600; font-size: 1.1rem;">{{ tab }}</li>
+        <li class="list-group-item border border-0" *ngFor=" let tab of songs"
+            style="text-transform: capitalize; background-color: rgb(82, 82, 82); color: white; font-weight: 600; font-size: 1.1rem;">
+            {{ songs | json }}
+            {{ tab }}</li>
     </ul>
 </div>
