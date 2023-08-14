@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,  ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from "@angular/common/http";
 // Importation du modile d'animation
@@ -17,6 +17,8 @@ import { AdminModule } from './admin/admin.module';
 import { ShareModule } from './share.module';
 import { AlbumComponent } from './admin/album/album.component';
 import { Routes } from '@angular/router';
+import { FormTemplateComponent } from './form-template/form-template.component';
+import { FormReactiveComponent } from './form-reactive/form-reactive.component';
 
 const albumsRoutes: Routes = [
   {path: '', redirectTo: '/albums', pathMatch: 'full'},
@@ -25,9 +27,8 @@ const albumsRoutes: Routes = [
   {path: 'album/:albumId', component: AlbumDescriptionComponent},
   {path: 'admin/album', component: AlbumComponent},
 
-
   /*========= ATTENTION DANGER ==========*/
-  // {path: '**', component: PageNotFoundComponent},
+  {path: '**', component: PageNotFoundComponent},
 ];
 
 @NgModule({
@@ -39,7 +40,9 @@ const albumsRoutes: Routes = [
     SearchComponent,
     LoginComponent,
     PageNotFoundComponent,
-    AudioPlayerComponent
+    AudioPlayerComponent,
+    FormTemplateComponent,
+    FormReactiveComponent
   ],
   imports: [
     AdminModule,
@@ -47,6 +50,7 @@ const albumsRoutes: Routes = [
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     ShareModule
   ],

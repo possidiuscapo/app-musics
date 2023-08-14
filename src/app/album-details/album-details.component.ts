@@ -28,13 +28,12 @@ export class AlbumDetailsComponent implements OnInit, OnChanges {
 
   albumList: List[] = [];
 
-
   constructor(
     private albumService: AlbumService
   ) { }
 
   ngOnInit() {
-    console.log(this.album)
+    // console.log(this.album)
   }
 
   ngOnChanges() {
@@ -46,11 +45,16 @@ export class AlbumDetailsComponent implements OnInit, OnChanges {
      });
    }*/
 
+
     if (this.album) {
-      this.albumService.getAlbumList(this.album.id)?.subscribe(
-        (albumList) =>{ this.songs = albumList.list}
-      );
+      this.albumService.getAlbumList(this.album.id).subscribe(
+        (albumList) => {
+          this.songs = albumList.list
+        }
+        );
     }
+
+
   }
 
   play(album: Album) {

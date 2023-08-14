@@ -1,23 +1,47 @@
-<div class="card border border-1" *ngIf="album" style="background-color: rgb(74, 74, 74);" [@fadeInAnimation]>
+<!-- <div class="card border border-1" *ngIf="album" style="background-color: rgb(74, 74, 74);" [@fadeInAnimation]>
     <img class="card-img-top" src="{{album.url}}" alt="Group Music">
-    <!-- <img class="card-img-top" src="../assets/images/party.jpg" alt="Group Music"> -->
+    <img class="card-img-top" src="../assets/images/party.jpg" alt="Group Music">
     <div class="card-body" style="width: 100%;">
         <h5 class="card-title" style="text-transform: capitalize; font-weight: 700; font-size: 1.3rem; color: white;">{{album.title}}
         </h5>
         <p class="card-text" style="text-transform: capitalize; font-weight: 500; font-size: 1.1rem; color: white;">{{album.name}}</p>
-        <button (click)="play(album)" class="btn"
+        <button (click)="play(album)" class="btn mx-2"
             style="background-color: rgb(225, 155, 2);color: rgb(249, 232, 224); font-size: 1.2rem; font-weight: 600;">Play
             <span class="fas fa-play ms-2"></span>
         </button>
         <button  class="btn"
             style="background-color: rgb(225, 54, 2);color: rgb(249, 232, 224); font-size: 1.2rem; font-weight: 600;">Hide
-            <!-- <span class="ms-2"></span> -->
-        </button> <!--(click)="hide(album)"-->
+            <span class="ms-2"></span>
+        </button> (click)="hide(album)"
     </div>
     <ul class="list-group border border-0">
         <li class="list-group-item border border-0" *ngFor=" let tab of songs"
             style="text-transform: capitalize; background-color: rgb(82, 82, 82); color: white; font-weight: 600; font-size: 1.1rem;">
             {{ songs | json }}
+            {{ tab }}</li>
+    </ul>
+</div> -->
+<div class="card border border-1" *ngIf="album" style="background-color: rgb(74, 74, 74);" [@fadeInAnimation]>
+    <!-- <img class="card-img-top" src="{{album.url}}" alt="Group Music"> -->
+    <!-- <img class="card-img-top" src="../assets/images/party.jpg" alt="Group Music"> -->
+    <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur necessitatibus suscipit fugit, veniam dolorem facilis unde nisi. Soluta quia dolore voluptates neque, deleniti nulla architecto nisi sint placeat provident distinctio repellendus sunt animi accusamus quidem, velit excepturi voluptatem debitis magnam mollitia veniam voluptate numquam alias! Corporis harum nobis cum in.</p> -->
+
+    <div class="card-body" style="width: 100%;">
+        <h5 class="card-title" style="text-transform: capitalize; font-weight: 700; font-size: 1.3rem; color: white;">{{album.title}}
+        </h5>
+        <p class="card-text" style="text-transform: capitalize; font-weight: 500; font-size: 1.1rem; color: white;">{{album.name}}</p>
+        <button (click)="play(album)" class="btn mx-2"
+            style="background-color: rgb(225, 155, 2);color: rgb(249, 232, 224); font-size: 1.2rem; font-weight: 600;">Play
+            <span class="fas fa-play ms-2"></span>
+        </button>
+        <button  class="btn"
+            style="background-color: rgb(225, 54, 2);color: rgb(249, 232, 224); font-size: 1.2rem; font-weight: 600;">Hide
+            <span class="ms-2"></span>
+        </button> <!-- (click)="hide(album)" -->
+    </div>
+    <ul class="list-group border border-0">
+        <li class="list-group-item border border-0" *ngFor=" let tab of songs"
+            style="text-transform: capitalize; background-color: rgb(82, 82, 82); color: white; font-weight: 600; font-size: 1.1rem;">
             {{ tab }}</li>
     </ul>
 </div>

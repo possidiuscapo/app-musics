@@ -19,6 +19,6 @@ const routes : Routes =[
     CommonModule,
     ShareModule,
   ],
-  exports: [AlbumComponent, RouterModule]
+  exports: [AlbumComponent, ]
 })
 export class AdminModule { }

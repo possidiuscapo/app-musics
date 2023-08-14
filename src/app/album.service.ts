@@ -37,13 +37,13 @@ export class AlbumService {
 
   /** */
   getAlbum(id: string): Observable<Album> | undefined {
-    return this.http.get<Album>(this._albumsUrl  + id).pipe(
+    return this.http.get<Album>(this._albumsUrl + '/' + id).pipe(
       map((album: Album) => album));
   }
 
   /** */
   getAlbumList(id: string): Observable<List> {
-    return this.http.get<List>(this._albumListUrl + id)
+    return this.http.get<List>(this._albumListUrl + '/' + id)
   }
 
   count() {

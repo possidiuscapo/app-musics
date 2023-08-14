@@ -21,7 +21,7 @@
                 </div>
                 <div class="card-body ">
                     <h5 class="card-title text-white" style="text-transform: capitalize;"><a class="text-warning"
-                            routerLink="/album/{{album.id}}">{{album.title}}</a> </h5>
+                            routerLink="/album/{{album.id}}">{{album.title}}</a></h5>
                     <p class="card-text text-white" style="text-transform: initial;"> {{ album.description }} </p>
                     <div class="row content">
                         <ul class="list-group list-group-horizontal mb-3 col-sm-3 fw-bold" *ngIf="album.tags">
@@ -32,7 +32,7 @@
                     </div>
                     <a class="btn btn-outline-light me-1" href="#" role="button" style="font-weight: 600;">En</a>
                     <img class="glyph-icon me-1" width="20px" height="auto" src="./assets/svg/si-glyph-heart.svg" />
-                    <small class="me-2 text-white" style="font-size: 20px;" *ngIf="compt">Mush {{compt}}</small>
+                    <small class="me-2 text-white" style="font-size: 20px;" >Mush </small>
                     <img class="glyph-icon me-1" width="20px" height="auto" src="./assets/svg/si-glyph-timer.svg" style="fill: white;" />
                     <small class="text-white" style="font-size: 20px;"> {{album.duration}} min</small><br>
                     <a routerLink="/albums"><button type="button" class="btn mt-2 text-white" (click)="onSelect(album)" style="background-color: rgb(121, 121, 121);font-size: 1.3rem">More</button></a>

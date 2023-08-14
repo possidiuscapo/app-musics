@@ -14,10 +14,9 @@ import { fadeInAnimation } from '../animation.module';
 })
 export class AlbumsComponent implements OnInit {
   titlePage: string = "Page principale Albums Music";
-  albums: Album[] | undefined = undefined;
+  albums: Album[] | undefined ;
   selectedAlbum:  Album | undefined;
   status: string | null = null;
-  compt: number = 1;
 
 
   constructor(
@@ -31,15 +30,13 @@ export class AlbumsComponent implements OnInit {
       next: (alb: Album[]) =>{this.albums = alb}
     })
 
-    console.log(this.albums)
+    // console.log(this.albums)
                                                 //  .order((a:Album, b: Album) => a.duration - b.duration)
                                                 // //  .limite(0, 10)
                                                 //  .limite(0, this.albumService.count())
                                                 //  .getAlbums()
   }
-  onHideAlbum(){
-    this.compt++
-  }
+  
   onSelect(album: Album) : void{
     this.selectedAlbum = album;
   }
