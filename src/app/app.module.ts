@@ -50,9 +50,9 @@ const albumsRoutes: Routes = [
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
-    ReactiveFormsModule,
+    // ReactiveFormsModule,
     HttpClientModule,
-    ShareModule
+    ShareModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
