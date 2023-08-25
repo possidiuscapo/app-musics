@@ -36,10 +36,10 @@ export class AppComponent implements OnInit {
     this.timersIntervale = interval(1000).pipe(
       take(3600 * 12),
       map((num: number) =>{
-        const hours = Math.floor(num/3600)
-        const min = Math.floor(num/60)
+        const hours = Math.floor(num/3600);
+        const minutes = Math.floor(num/60);
         // const second = Math.floor(num/24)
-        return `${this.format(hours)} h ${this.format(min - hours * 60)} min ${this.format(num - min * 60)} s`
+        return `${this.format(hours)} h ${this.format(minutes - hours * 60)} min ${this.format(num - minutes * 60)} s`
       })
       );
     this.timersIntervale.subscribe(num =>

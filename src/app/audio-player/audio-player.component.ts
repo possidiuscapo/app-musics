@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Album } from '../album';
 import { AlbumService } from '../album.service';
 
@@ -7,11 +7,11 @@ import { AlbumService } from '../album.service';
   templateUrl: './audio-player.component.html',
   styleUrls: ['./audio-player.component.css']
 })
-export class AudioPlayerComponent {
+export class AudioPlayerComponent implements OnInit {
    /**Une variable permettant d'afficher ou non, le composant audio-player */
   showplayer: boolean = false
 
-  /**Une variable représentant l'album joué */
+  /** Une variable représentant l'album joué */
   playerAlbum!: Album;
 
   /** Une variable représentant le nombre total de sons dans l'album */

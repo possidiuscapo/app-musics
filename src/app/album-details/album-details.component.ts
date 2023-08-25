@@ -24,21 +24,21 @@ export class AlbumDetailsComponent implements OnInit, OnChanges {
   @Output() onHide: EventEmitter<Album> = new EventEmitter()
 
   /** tableau qui stock la liste des chansons de l'album */
-  songs: string[] = [];
+  songs: string[] | undefined = [];
 
-  albumList: List[] = [];
+  albumList!: List[] ;
 
   constructor(
     private albumService: AlbumService
   ) { }
 
   ngOnInit() {
-    // console.log(this.album)
   }
 
-  ngOnChanges() {
-    /* if(this.album !== undefined){
-     ALBUM_LISTS.forEach((albumList) => {
+  ngOnChanges(): void {
+    /** 
+     *  if(this.album !== undefined){
+      ALBUM_LISTS.forEach((albumList) => {
        if ( albumList.id === this.album.id) {
          this.tabDeList = albumList.list;
        }
@@ -47,26 +47,23 @@ export class AlbumDetailsComponent implements OnInit, OnChanges {
 
 
     if (this.album) {
-      this.albumService.getAlbumList(this.album.id).subscribe(
-        (albumList) => {
-          this.songs = albumList.list
-        }
+      this.albumService.getAlbumList(this.album.id)
+        .subscribe(
+          (albumList) => { this.songs = albumList.list }
         );
     }
-
-
   }
 
   play(album: Album) {
     this.onPlay.emit(album)
     this.albumService.switchOn(album)
-    // console.log("Joueur l'album " + this.album.name)
   }
 
-  // shuffleAlbum(songs: string[]){
-  //   this.tabDeList = this.albumService.shuffle(songs)
-  // }
-  // hide(album: Album) {
-  //   this.onHide.emit(album);
-  // }  
+  shuffleAlbum(song: string[]) {
+    this.songs = this.albumService.shuffle(song)
+  }
+
+  hide(album: Album) {
+    this.onHide.emit(album);
+  }
 }

@@ -61,7 +61,7 @@ export class AlbumsComponent implements OnInit {
     // Récupérer les albums compris entre [start et end]
     this.albumService.paginate($event.start, $event.end)
     .subscribe({
-      next: (al: Album[]) => this.albums = al
+      next: (alb: Album[]) => this.albums = alb
     })
   }
 }

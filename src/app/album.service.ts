@@ -85,7 +85,7 @@ export class AlbumService {
         })
       })
     )
-      
+
   }
   // serchV2(word: string): Album[]{
   //    let re = new RegExp(word.trim(),"g");
@@ -116,7 +116,7 @@ export class AlbumService {
     }
     return songs;
   }
-  
+
   currentPage(numberPage: number) {
     return this.sendCurrentNumberPage.next(numberPage)
   }
@@ -124,9 +124,14 @@ export class AlbumService {
    * Méthode qui permet de cha,ger le startus d'un album a "On"
    * @param album : l'album dont le startus doit passer à "On"
    */
-  switchOn(album: Album) : void {
+  switchOn(album: Album): void {
     album.status = "on";
     this.http.put<void>(this._albumsUrl + "/" + album.id, album)
+    .subscribe({
+      next: (data) => console.log(data),
+      error: (err) => console.warn(err),
+      complete: () => this.subjectAlbum.next(album)
+    })
     /**return this.http.get<Album[]>(this._albumListUrl).pipe(
       map(
         (albums) => albums.forEach(a => {
@@ -146,8 +151,8 @@ export class AlbumService {
    * @param album : l'album dont le startus doit passer à "Off"
    */
   switchOff(album: Album) {
-    album.status= "off";
-    this.http.put<void>(`${this._albumsUrl}/${album.id}`,album).subscribe(() =>{})
+    album.status = "off";
+    this.http.put<void>(`${this._albumsUrl}/${album.id}`, album).subscribe(() => { })
     /**
      * renvoi un observable; est ne s'exécute
      * donc
@@ -155,6 +160,6 @@ export class AlbumService {
     // this._albums.forEach(a => a.status = "off"
     //     // console.log(a.status)
     // )
- 
+
   }
 }
